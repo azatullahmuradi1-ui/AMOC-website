@@ -1,0 +1,6233 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>آموزشگاه علمی</title>
+
+<style>
+:root{
+ --navy:#102a43;
+ --navy2:#173f63;
+ --blue:#1976d2;
+ --green:#22a06b;
+ --purple:#7856d6;
+ --orange:#e58a24;
+ --red:#d94b5b;
+ --text:#17324d;
+ --muted:#6d8091;
+ --line:#cbdce9;
+ --shadow:0 14px 35px rgba(20,55,85,.14);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+ margin:0;
+ min-height:100%;
+ font-family:Tahoma,"Segoe UI",Arial,sans-serif;
+ color:var(--text);
+}
+
+body{
+ background:
+ linear-gradient(rgba(235,245,251,.88),rgba(235,245,251,.94)),
+ url("school-bg.png") center/cover fixed no-repeat;
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* LOGIN */
+
+.login-screen{
+ min-height:100vh;
+ display:grid;
+ place-items:center;
+ padding:20px;
+ background:
+ linear-gradient(rgba(8,37,61,.52),rgba(8,37,61,.68)),
+ url("school-bg.png") center/cover fixed;
+}
+
+.login-card{
+ width:min(470px,100%);
+ background:rgba(255,255,255,.97);
+ border:6px double #b9d2e2;
+ border-radius:25px;
+ padding:28px;
+ box-shadow:0 25px 70px rgba(0,0,0,.28);
+}
+
+.login-logo{
+ width:82px;
+ height:82px;
+ border-radius:22px;
+ background:#e7f3fc;
+ border:4px double #91bddb;
+ display:grid;
+ place-items:center;
+ font-size:43px;
+ margin:auto;
+}
+
+.login-card h1{
+ text-align:center;
+ margin:10px 0 5px;
+ color:#153e5d;
+}
+
+.login-card .sub{
+ text-align:center;
+ color:var(--muted);
+ margin-bottom:20px;
+}
+
+.role-select{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:7px;
+ margin-bottom:15px;
+}
+
+.role-choice{
+ border:3px double #c7dae7;
+ background:#f8fbfd;
+ border-radius:12px;
+ padding:9px 5px;
+ text-align:center;
+ cursor:pointer;
+ font-size:12px;
+ font-weight:bold;
+}
+
+.role-choice.selected{
+ background:#e4f2fd;
+ border-color:#4598d0;
+ color:#15537b;
+}
+
+.field{
+ display:flex;
+ flex-direction:column;
+ gap:6px;
+ margin-bottom:12px;
+}
+
+.field label{
+ font-size:13px;
+ font-weight:bold;
+ color:#35566d;
+}
+
+.field input,
+.field select,
+.field textarea{
+ width:100%;
+ border:2px solid #cbdde8;
+ border-radius:11px;
+ padding:11px;
+ outline:none;
+ background:#fbfdff;
+ color:var(--text);
+}
+
+.field textarea{
+ min-height:90px;
+ resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+ border-color:#55a5da;
+ box-shadow:0 0 0 3px rgba(77,163,255,.1);
+}
+
+.password{
+ position:relative;
+}
+
+.password input{
+ padding-left:48px;
+}
+
+.eye{
+ position:absolute;
+ left:5px;
+ top:4px;
+ border:0;
+ background:transparent;
+ font-size:21px;
+ padding:6px;
+}
+
+.btn{
+ border:3px double rgba(255,255,255,.9);
+ border-radius:12px;
+ padding:10px 15px;
+ color:#fff;
+ background:var(--blue);
+ box-shadow:0 7px 15px rgba(25,118,210,.2);
+ font-weight:bold;
+ transition:.2s;
+}
+
+.btn:hover{
+ transform:translateY(-2px);
+ filter:brightness(1.05);
+}
+
+.btn.green{background:var(--green)}
+.btn.purple{background:var(--purple)}
+.btn.orange{background:var(--orange)}
+.btn.red{background:var(--red)}
+.btn.gray{background:#607d8b}
+.btn.light{
+ background:#eef6fb;
+ color:#174567;
+ border-color:#a8c7db;
+}
+.btn.full{width:100%}
+.btn.sm{padding:7px 10px;font-size:12px}
+
+.notice{
+ padding:11px;
+ border-radius:12px;
+ background:#edf7ff;
+ border:2px solid #c6e1f4;
+ color:#315c78;
+ font-size:12px;
+ line-height:1.8;
+}
+
+.auth-link{
+ text-align:center;
+ margin-top:14px;
+ color:#27638c;
+ cursor:pointer;
+ font-weight:bold;
+}
+
+/* APP */
+
+.app{
+ min-height:100vh;
+ display:flex;
+}
+
+.sidebar{
+ width:250px;
+ position:fixed;
+ right:0;
+ top:0;
+ bottom:0;
+ z-index:50;
+ background:linear-gradient(180deg,#0d2944,#143d60 70%,#102e4a);
+ color:#fff;
+ padding:22px 15px;
+ overflow-y:auto;
+ border-left:5px double rgba(255,255,255,.28);
+ box-shadow:-12px 0 35px rgba(0,0,0,.15);
+}
+
+.brand{
+ text-align:center;
+ padding:8px 5px 22px;
+ border-bottom:4px double rgba(255,255,255,.22);
+ margin-bottom:16px;
+}
+
+.brand-logo{
+ width:65px;
+ height:65px;
+ border-radius:18px;
+ margin:auto;
+ display:grid;
+ place-items:center;
+ background:#fff;
+ color:var(--blue);
+ font-size:35px;
+}
+
+.brand h2{
+ margin:10px 0 4px;
+ font-size:21px;
+}
+
+.brand small{color:#c8d8e6}
+
+.nav{
+ display:grid;
+ gap:7px;
+}
+
+.nav button{
+ width:100%;
+ border:2px solid transparent;
+ background:transparent;
+ color:#e9f3fa;
+ text-align:right;
+ padding:12px 13px;
+ border-radius:13px;
+ font-weight:bold;
+ transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+ background:#1c77c8;
+ border-color:#75bfff;
+ box-shadow:0 7px 18px rgba(0,0,0,.18);
+}
+
+.nav button span{
+ display:inline-block;
+ width:30px;
+ font-size:19px;
+}
+
+.sidebar-footer{
+ margin-top:25px;
+ padding:13px;
+ border-top:4px double rgba(255,255,255,.2);
+ font-size:12px;
+ color:#bdd0df;
+}
+
+.main{
+ width:calc(100% - 250px);
+ margin-right:250px;
+ min-height:100vh;
+ padding:20px;
+}
+
+.topbar{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+ background:rgba(255,255,255,.9);
+ border:5px double #a9c8df;
+ border-radius:18px;
+ padding:11px 15px;
+ box-shadow:var(--shadow);
+ backdrop-filter:blur(10px);
+}
+
+.search{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ background:#f7fbfe;
+ border:2px solid #c9ddea;
+ border-radius:14px;
+ padding:7px 12px;
+ max-width:430px;
+ width:100%;
+}
+
+.search input{
+ border:0;
+ outline:0;
+ background:transparent;
+ width:100%;
+}
+
+.userbox{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-weight:bold;
+}
+
+.avatar{
+ width:42px;
+ height:42px;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ background:#e2eff9;
+ border:2px solid #9bc3df;
+ font-size:21px;
+}
+
+.mobile-menu{display:none}
+
+/* HERO */
+
+.hero{
+ margin-top:16px;
+ min-height:250px;
+ border:6px double rgba(255,255,255,.9);
+ border-radius:24px;
+ overflow:hidden;
+ background:
+ linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.45),rgba(255,255,255,.08)),
+ url("school-bg.png") center/cover;
+ box-shadow:var(--shadow);
+ display:flex;
+ align-items:center;
+ padding:30px;
+}
+
+.hero-content{
+ max-width:650px;
+ background:rgba(255,255,255,.84);
+ padding:22px 26px;
+ border:5px double #c6d9e7;
+ border-radius:22px;
+}
+
+.hero h1{
+ margin:0 0 9px;
+ color:#10385b;
+ font-size:31px;
+}
+
+.hero p{
+ margin:0;
+ color:#4f6578;
+ line-height:1.9;
+}
+
+/* CARDS */
+
+.section-title{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin:24px 2px 13px;
+}
+
+.section-title h2{
+ margin:0;
+ font-size:22px;
+}
+
+.section-title small{
+ color:var(--muted);
+}
+
+.cards{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.role-card{
+ min-height:210px;
+ padding:22px;
+ border-radius:22px;
+ border:6px double #c8dbe8;
+ background:#fff;
+ box-shadow:var(--shadow);
+ transition:.25s;
+}
+
+.role-card:hover{
+ transform:translateY(-4px);
+}
+
+.role-card .icon{
+ font-size:45px;
+}
+
+.role-card h3{
+ margin:8px 0;
+ font-size:22px;
+}
+
+.role-card p{
+ color:var(--muted);
+ line-height:1.7;
+}
+
+.role-card.student{
+ background:linear-gradient(145deg,#f2fffa,#fff);
+}
+
+.role-card.teacher{
+ background:linear-gradient(145deg,#f3f9ff,#fff);
+}
+
+.role-card.admin{
+ background:linear-gradient(145deg,#faf6ff,#fff);
+}
+
+/* PANELS */
+
+.panel{
+ background:rgba(255,255,255,.95);
+ border:6px double var(--line);
+ border-radius:20px;
+ padding:18px;
+ box-shadow:var(--shadow);
+}
+
+.grid2{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:15px;
+}
+
+.grid3{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.teacher-area{
+ background:
+ radial-gradient(circle at 20% 10%,rgba(87,169,231,.13) 0 2px,transparent 3px),
+ linear-gradient(135deg,#f3f8fc,#fff);
+ background-size:24px 24px,auto;
+}
+
+.student-area{
+ background:linear-gradient(145deg,#f7fffb,#fff);
+ border-color:#bfe2d1;
+}
+
+/* CARDS */
+
+.teacher-card,
+.subject-card,
+.lesson-card,
+.stat{
+ background:#fff;
+ border:5px double #cfe0eb;
+ border-radius:18px;
+ padding:16px;
+ box-shadow:0 8px 22px rgba(20,55,85,.08);
+}
+
+.teacher-card h3,
+.subject-card h3,
+.lesson-card h3{
+ margin:8px 0;
+}
+
+.subject-card{
+ cursor:pointer;
+ transition:.2s;
+}
+
+.subject-card:hover{
+ transform:translateY(-3px);
+ border-color:#86b8dc;
+}
+
+.subject-icon{
+ font-size:35px;
+}
+
+.muted{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.8;
+}
+
+.tag{
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:20px;
+ background:#eaf4fb;
+ color:#20608c;
+ font-size:12px;
+ font-weight:bold;
+ margin:2px;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
+}
+
+.stat{
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+
+.stat .big{
+ font-size:25px;
+ font-weight:900;
+}
+
+/* TABLE */
+
+.table-wrap{
+ overflow:auto;
+ border:5px double #cadce8;
+ border-radius:16px;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ min-width:1050px;
+ background:#fff;
+}
+
+th,td{
+ padding:11px 9px;
+ border-bottom:1px solid #dce8ef;
+ text-align:right;
+ vertical-align:middle;
+}
+
+th{
+ background:#edf6fb;
+ color:#214d6e;
+ position:sticky;
+ top:0;
+ z-index:1;
+}
+
+tr:hover td{
+ background:#fbfdff;
+}
+
+.actions{
+ display:flex;
+ gap:5px;
+ flex-wrap:wrap;
+}
+
+.status{
+ padding:5px 9px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:bold;
+}
+
+.paid{
+ background:#dff6ea;
+ color:#167448;
+}
+
+.due{
+ background:#fff0d9;
+ color:#a35a00;
+}
+
+.blocked{
+ background:#ffe2e5;
+ color:#a62538;
+}
+
+/* PROGRESS */
+
+.progress{
+ height:10px;
+ border-radius:20px;
+ background:#e5eef4;
+ overflow:hidden;
+ border:1px solid #c9dce8;
+}
+
+.progress i{
+ display:block;
+ height:100%;
+ background:linear-gradient(90deg,#36a3ff,#22a06b);
+ border-radius:20px;
+}
+
+/* FORM */
+
+.form-grid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+
+.field.full{
+ grid-column:1/-1;
+}
+
+/* MODAL */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:rgba(5,25,40,.65);
+ z-index:100;
+ display:grid;
+ place-items:center;
+ padding:15px;
+}
+
+.modal-box{
+ width:min(750px,100%);
+ max-height:92vh;
+ overflow:auto;
+ background:#fff;
+ border:6px double #b9d2e2;
+ border-radius:22px;
+ padding:20px;
+ box-shadow:0 25px 80px rgba(0,0,0,.3);
+}
+
+.modal-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:4px double #d5e3eb;
+ padding-bottom:10px;
+ margin-bottom:15px;
+}
+
+.modal-head h3{
+ margin:0;
+}
+
+.close{
+ border:0;
+ background:#ffe8eb;
+ color:#a82b3d;
+ border-radius:10px;
+ padding:6px 10px;
+ font-size:18px;
+}
+
+/* FILE */
+
+.file-box{
+ border:4px double #c9dce8;
+ border-radius:14px;
+ padding:12px;
+ background:#f8fbfd;
+}
+
+.file-preview{
+ max-width:100%;
+ max-height:260px;
+ border-radius:12px;
+ border:2px solid #d2e2ec;
+ margin-top:8px;
+}
+
+.video-preview{
+ width:100%;
+ max-height:300px;
+ border-radius:12px;
+ margin-top:8px;
+ background:#081a29;
+}
+
+/* BILL */
+
+.bill{
+ background:#fff;
+ border:6px double #234d6b;
+ border-radius:14px;
+ padding:20px;
+}
+
+.bill-head{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ border-bottom:4px double #ccdce6;
+ padding-bottom:12px;
+}
+
+.bill-row{
+ display:flex;
+ justify-content:space-between;
+ padding:8px 0;
+ border-bottom:1px dashed #d4e1e8;
+}
+
+/* EMPTY */
+
+.empty{
+ text-align:center;
+ padding:30px;
+ color:#75899a;
+}
+
+.empty .eicon{
+ font-size:40px;
+}
+
+/* TOAST */
+
+.toast{
+ position:fixed;
+ left:20px;
+ bottom:20px;
+ z-index:200;
+ background:#143d60;
+ color:#fff;
+ padding:12px 16px;
+ border-radius:12px;
+ border:4px double #76a9cb;
+ box-shadow:0 10px 25px rgba(0,0,0,.2);
+ opacity:0;
+ transform:translateY(15px);
+ transition:.25s;
+}
+
+.toast.show{
+ opacity:1;
+ transform:none;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+ .cards,.grid3{grid-template-columns:1fr 1fr}
+ .stats{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:800px){
+ .sidebar{
+  transform:translateX(100%);
+  transition:.25s;
+  width:270px;
+ }
+
+ .sidebar.open{
+  transform:none;
+ }
+
+ .main{
+  width:100%;
+  margin-right:0;
+  padding:12px;
+ }
+
+ .mobile-menu{
+  display:block;
+ }
+
+ .topbar{
+  position:sticky;
+  top:8px;
+  z-index:40;
+ }
+
+ .hero{
+  min-height:300px;
+  padding:18px;
+ }
+
+ .hero h1{
+  font-size:24px;
+ }
+
+ .cards,
+ .grid2,
+ .grid3,
+ .form-grid{
+  grid-template-columns:1fr;
+ }
+
+ .stats{
+  grid-template-columns:1fr 1fr;
+ }
+}
+
+@media(max-width:500px){
+ .stats{
+  grid-template-columns:1fr;
+ }
+
+ .topbar .search{
+  display:none;
+ }
+
+ .hero-content{
+  padding:16px;
+ }
+
+ .role-select{
+  grid-template-columns:1fr;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen" class="login-screen">
+
+ <div class="login-card">
+
+  <div class="login-logo">🎓</div>
+
+  <h1>آموزشگاه علمی</h1>
+
+  <div class="sub">
+   دانش • مهارت • آینده بهتر
+  </div>
+
+  <div class="role-select">
+
+   <div class="role-choice selected"
+        data-login-role="admin">
+    👑 مدیر عمومی
+   </div>
+
+   <div class="role-choice"
+        data-login-role="teacher">
+    👨‍🏫 استاد
+   </div>
+
+   <div class="role-choice"
+        data-login-role="student">
+    👨‍🎓 شاگرد
+   </div>
+
+  </div>
+
+  <form id="loginForm">
+
+   <div class="field">
+    <label>ایمیل</label>
+    <input id="loginEmail"
+           type="email"
+           required
+           autocomplete="username">
+   </div>
+
+   <div class="field">
+
+    <label>رمز عبور</label>
+
+    <div class="password">
+
+     <input id="loginPassword"
+            type="password"
+            required
+            autocomplete="current-password">
+
+     <button type="button"
+             class="eye"
+             onclick="togglePassword('loginPassword',this)">
+      👁️
+     </button>
+
+    </div>
+
+   </div>
+
+   <button class="btn full"
+           type="submit">
+    🔐 ورود به سیستم
+   </button>
+
+  </form>
+
+  <div class="auth-link"
+       onclick="showRegister()">
+   📝 ثبت‌نام شاگرد جدید
+  </div>
+
+  <div id="loginMsg"
+       class="notice hidden"
+       style="margin-top:12px">
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- ================= REGISTER ================= -->
+
+<div id="registerScreen"
+     class="login-screen hidden">
+
+ <div class="login-card">
+
+  <div class="login-logo">📝</div>
+
+  <h1>ثبت‌نام شاگرد</h1>
+
+  <div class="sub">
+   اطلاعات خود را دقیق وارد کنید
+  </div>
+
+  <form id="registerForm">
+
+   <div class="form-grid">
+
+    <div class="field">
+     <label>نام و نام خانوادگی</label>
+     <input id="regName" required>
+    </div>
+
+    <div class="field">
+     <label>نام پدر</label>
+     <input id="regFather" required>
+    </div>
+
+    <div class="field">
+     <label>شماره تماس</label>
+     <input id="regPhone" required>
+    </div>
+
+    <div class="field">
+     <label>ایمیل</label>
+     <input id="regEmail"
+            type="email"
+            required>
+    </div>
+
+    <div class="field">
+
+     <label>رمز عبور</label>
+
+     <div class="password">
+
+      <input id="regPass"
+             type="password"
+             required>
+
+      <button type="button"
+              class="eye"
+              onclick="togglePassword('regPass',this)">
+       👁️
+      </button>
+
+     </div>
+
+    </div>
+
+    <div class="field">
+
+     <label>تکرار رمز</label>
+
+     <div class="password">
+
+      <input id="regPass2"
+             type="password"
+             required>
+
+      <button type="button"
+              class="eye"
+              onclick="togglePassword('regPass2',this)">
+       👁️
+      </button>
+
+     </div>
+
+    </div>
+
+   </div>
+
+   <div class="notice">
+    رمز باید شامل
+    <b>حرف + عدد + علامت</b>
+    باشد.
+    <br>
+    مثال:
+    <b>Muradi@123</b>
+   </div>
+
+   <button class="btn green full"
+           style="margin-top:12px"
+           type="submit">
+    ✅ ایجاد حساب
+   </button>
+
+  </form>
+
+  <div class="auth-link"
+       onclick="showLogin()">
+   ↩️ برگشت به ورود
+  </div>
+
+  <div id="regMsg"
+       class="notice hidden"
+       style="margin-top:12px">
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app"
+     class="app hidden">
+
+ <aside id="sidebar"
+        class="sidebar">
+
+  <div class="brand">
+
+   <div class="brand-logo">
+    🎓
+   </div>
+
+   <h2>
+    آموزشگاه علمی
+   </h2>
+
+   <small>
+    دانش، مهارت، آینده بهتر
+   </small>
+
+  </div>
+
+  <div id="nav"
+       class="nav">
+  </div>
+
+  <div class="sidebar-footer">
+   هر روز یک قدم به سوی موفقیت... 🌱
+  </div>
+
+ </aside>
+
+
+ <main class="main">
+
+  <div class="topbar">
+
+   <button class="btn light mobile-menu"
+           onclick="toggleSidebar()">
+    ☰
+   </button>
+
+   <div class="search">
+    🔎
+    <input id="globalSearch"
+           placeholder="جستجو در سایت..."
+           oninput="globalSearch(this.value)">
+   </div>
+
+   <div class="userbox">
+
+    <div>
+     <b id="topName">
+      کاربر
+     </b>
+     <br>
+     <small id="topRole"></small>
+    </div>
+
+    <div class="avatar"
+         id="topAvatar">
+     👤
+    </div>
+
+    <button class="btn red sm"
+            onclick="logout()">
+     خروج
+    </button>
+
+   </div>
+
+  </div>
+
+  <div id="content"></div>
+
+ </main>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div id="modal"
+     class="modal hidden">
+
+ <div id="modalBox"
+      class="modal-box">
+ </div>
+
+</div>
+
+<div id="toast"
+     class="toast">
+</div>
+
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+const KEY="scientific_academy_complete_v1";
+
+let db=loadDB();
+
+let currentUser=null;
+
+let currentLoginRole="admin";
+
+let currentPage="home";
+
+let selectedSubjectId=null;
+
+let currentFileData=null;
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function uid(prefix="id"){
+ return prefix+"_"+Date.now().toString(36)+"_"+Math.random().toString(36).slice(2,8);
+}
+
+function saveDB(){
+ localStorage.setItem(KEY,JSON.stringify(db));
+}
+
+function today(){
+ return new Date().toISOString().slice(0,10);
+}
+
+function now(){
+ return new Date().toLocaleString("fa-AF");
+}
+
+function money(n){
+ return new Intl.NumberFormat("fa-AF").format(
+  Number(n||0)
+ )+" افغانی";
+}
+
+function esc(v){
+ return String(v??"").replace(/[&<>"']/g,function(c){
+  return {
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#039;"
+  }[c];
+ });
+}
+
+function validPassword(p){
+ return /[A-Za-z\u0600-\u06FF]/.test(p)
+ &&/[0-9]/.test(p)
+ &&/[^A-Za-z0-9\u0600-\u06FF]/.test(p)
+ &&p.length>=6;
+}
+
+function sumPaid(u){
+ return (u.payments||[]).reduce(
+  (a,p)=>a+Number(p.amount||0),0
+ );
+}
+
+function iconFor(c){
+ c=(c||"").toLowerCase();
+
+ if(c.includes("انگلی")||c.includes("english"))
+  return "🇬🇧";
+
+ if(c.includes("خط")||c.includes("call"))
+  return "✍️";
+
+ return "💻";
+}
+
+function roleName(role){
+ if(role==="admin")return "مدیر عمومی";
+ if(role==="teacher")return "استاد";
+ return "شاگرد";
+}
+
+function toast(msg){
+ const t=document.getElementById("toast");
+
+ t.textContent=msg;
+
+ t.classList.add("show");
+
+ setTimeout(()=>{
+  t.classList.remove("show");
+ },2500);
+}
+
+function empty(icon,msg){
+ return `
+ <div class="empty">
+  <div class="eicon">${icon}</div>
+  <b>${msg}</b>
+ </div>
+ `;
+}
+
+
+/* =====================================================
+   DATABASE LOAD
+===================================================== */
+
+function loadDB(){
+
+ let data=null;
+
+ try{
+  data=JSON.parse(
+   localStorage.getItem(KEY)||"null"
+  );
+ }catch(e){
+  data=null;
+ }
+
+ if(data){
+  normalizeDB(data);
+  return data;
+ }
+
+ const oldUsers=
+  JSON.parse(localStorage.getItem("users")||"[]");
+
+ const oldGroups=
+  JSON.parse(localStorage.getItem("courseGroups")||"[]");
+
+ const oldLessons=
+  JSON.parse(localStorage.getItem("lessons")||"[]");
+
+ data={
+  users:[],
+  teachers:[],
+  subjects:[],
+  lessons:[],
+  trash:[],
+  settings:{
+   academyName:"آموزشگاه علمی"
+  }
+ };
+
+ data.users=oldUsers.map(u=>({
+  ...u,
+  role:u.role||"student",
+  fatherName:u.fatherName||"",
+  phone:u.phone||"",
+  active:u.active!==false,
+  courseIds:u.courseIds||
+   (u.courseId?[u.courseId]:[]),
+  fee:Number(u.fee||0),
+  payments:u.payments||[],
+  completedLessons:u.completedLessons||[]
+ }));
+
+ data.subjects=oldGroups.map(g=>({
+  id:g.id||uid("sub"),
+  category:g.category||"کمپیوتر",
+  name:g.name||"کورس",
+  description:g.description||"",
+  icon:iconFor(g.category)
+ }));
+
+ data.lessons=oldLessons.map(l=>({
+  ...l,
+  id:l.id||uid("les"),
+  courseId:l.courseId||l.groupId||"",
+  teacherId:l.teacherId||"",
+  file:l.file||"",
+  fileName:l.fileName||"",
+  fileType:l.fileType||"",
+  deleted:false
+ }));
+
+ ensureAdmin(data);
+
+ normalizeDB(data);
+
+ localStorage.setItem(
+  KEY,
+  JSON.stringify(data)
+ );
+
+ return data;
+}
+
+
+function ensureAdmin(data){
+
+ if(!data.users.some(u=>u.role==="admin")){
+
+  data.users.unshift({
+   id:"admin",
+   name:"مدیر عمومی",
+   fatherName:"",
+   phone:"",
+   email:"admin@gmail.com",
+   password:"Admin@123",
+   role:"admin",
+   active:true,
+   courseIds:[],
+   fee:0,
+   payments:[]
+  });
+
+ }
+
+}
+
+
+function normalizeDB(data){
+
+ ensureAdmin(data);
+
+ data.users=data.users||[];
+ data.teachers=data.teachers||[];
+ data.subjects=data.subjects||[];
+ data.lessons=data.lessons||[];
+ data.trash=data.trash||[];
+
+ data.users.forEach(u=>{
+  u.payments=u.payments||[];
+  u.courseIds=u.courseIds||
+   (u.courseId?[u.courseId]:[]);
+  u.completedLessons=u.completedLessons||[];
+  u.active=u.active!==false;
+ });
+
+ data.teachers.forEach(t=>{
+  t.active=t.active!==false;
+  t.password=t.password||"Teacher@123";
+ });
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+document.querySelectorAll("[data-login-role]")
+.forEach(el=>{
+
+ el.addEventListener("click",()=>{
+
+  currentLoginRole=
+   el.dataset.loginRole;
+
+  document.querySelectorAll(".role-choice")
+   .forEach(x=>x.classList.remove("selected"));
+
+  el.classList.add("selected");
+
+ });
+
+});
+
+
+function togglePassword(id,button){
+
+ const input=document.getElementById(id);
+
+ if(input.type==="password"){
+
+  input.type="text";
+
+  button.textContent="🙈";
+
+ }else{
+
+  input.type="password";
+
+  button.textContent="👁️";
+
+ }
+
+}
+
+
+function showLogin(){
+
+ document
+  .getElementById("registerScreen")
+  .classList.add("hidden");
+
+ document
+  .getElementById("loginScreen")
+  .classList.remove("hidden");
+
+}
+
+
+function showRegister(){
+
+ document
+  .getElementById("loginScreen")
+  .classList.add("hidden");
+
+ document
+  .getElementById("registerScreen")
+  .classList.remove("hidden");
+
+}
+
+
+/* LOGIN */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+ e.preventDefault();
+
+ const email=
+  document.getElementById("loginEmail")
+  .value.trim().toLowerCase();
+
+ const password=
+  document.getElementById("loginPassword")
+  .value;
+
+ const msg=
+  document.getElementById("loginMsg");
+
+ let user=null;
+
+
+ /* ADMIN / STUDENT */
+
+ if(currentLoginRole!=="teacher"){
+
+  user=db.users.find(u=>
+   u.email.toLowerCase()===email &&
+   u.password===password &&
+   u.role===currentLoginRole
+  );
+
+ }
+
+
+ /* TEACHER */
+
+ if(currentLoginRole==="teacher"){
+
+  user=db.teachers.find(t=>
+   t.email &&
+   t.email.toLowerCase()===email &&
+   t.password===password
+  );
+
+  if(user){
+
+   user={
+    ...user,
+    role:"teacher"
+   };
+
+  }
+
+ }
+
+
+ if(!user){
+
+  msg.textContent=
+   "ایمیل یا رمز عبور نادرست است.";
+
+  msg.classList.remove("hidden");
+
+  return;
+ }
+
+
+ if(user.active===false){
+
+  msg.textContent=
+   "این حساب توسط مدیر عمومی غیرفعال شده است.";
+
+  msg.classList.remove("hidden");
+
+  return;
+ }
+
+
+ currentUser=user;
+
+ msg.classList.add("hidden");
+
+ openApp();
+
+});
+
+
+/* REGISTER */
+
+document
+.getElementById("registerForm")
+.addEventListener("submit",function(e){
+
+ e.preventDefault();
+
+ const name=
+  document.getElementById("regName").value.trim();
+
+ const father=
+  document.getElementById("regFather").value.trim();
+
+ const phone=
+  document.getElementById("regPhone").value.trim();
+
+ const email=
+  document.getElementById("regEmail")
+  .value.trim().toLowerCase();
+
+ const pass=
+  document.getElementById("regPass").value;
+
+ const pass2=
+  document.getElementById("regPass2").value;
+
+ const msg=
+  document.getElementById("regMsg");
+
+
+ if(db.users.some(u=>u.email.toLowerCase()===email)){
+
+  msg.textContent=
+   "این ایمیل قبلاً ثبت شده است.";
+
+  msg.classList.remove("hidden");
+
+  return;
+ }
+
+
+ if(!validPassword(pass)){
+
+  msg.textContent=
+   "رمز باید شامل حرف، عدد و علامت باشد.";
+
+  msg.classList.remove("hidden");
+
+  return;
+ }
+
+
+ if(pass!==pass2){
+
+  msg.textContent=
+   "تکرار رمز یکسان نیست.";
+
+  msg.classList.remove("hidden");
+
+  return;
+ }
+
+
+ db.users.push({
+  id:uid("stu"),
+  name,
+  fatherName:father,
+  phone,
+  email,
+  password:pass,
+  role:"student",
+  active:true,
+  courseIds:[],
+  fee:0,
+  payments:[],
+  completedLessons:[]
+ });
+
+
+ saveDB();
+
+ msg.textContent=
+  "ثبت‌نام موفق شد. اکنون وارد شوید.";
+
+ msg.classList.remove("hidden");
+
+ e.target.reset();
+
+ setTimeout(showLogin,800);
+
+});
+
+
+function openApp(){
+
+ document
+  .getElementById("loginScreen")
+  .classList.add("hidden");
+
+ document
+  .getElementById("registerScreen")
+  .classList.add("hidden");
+
+ document
+  .getElementById("app")
+  .classList.remove("hidden");
+
+ currentPage="home";
+
+ buildNav();
+
+ updateUserUI();
+
+ render();
+
+}
+
+
+function logout(){
+
+ currentUser=null;
+
+ document
+  .getElementById("app")
+  .classList.add("hidden");
+
+ document
+  .getElementById("loginScreen")
+  .classList.remove("hidden");
+
+ document
+  .getElementById("loginForm")
+  .reset();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function buildNav(){
+
+ const nav=
+  document.getElementById("nav");
+
+ let items=[];
+
+
+ if(currentUser.role==="admin"){
+
+  items=[
+   ["home","🏠","صفحه اصلی"],
+   ["teachers","👨‍🏫","استادان"],
+   ["students","👨‍🎓","شاگردان"],
+   ["subjects","📚","مضامین و کورس‌ها"],
+   ["lessons","📖","درس‌ها"],
+   ["payments","💳","پرداخت‌ها"],
+   ["trash","🗑️","سطل زباله"],
+   ["reports","📊","گزارش‌ها"],
+   ["settings","⚙️","تنظیمات"]
+  ];
+
+ }
+
+ else if(currentUser.role==="teacher"){
+
+  items=[
+   ["home","🏠","صفحه اصلی"],
+   ["myStudents","👨‍🎓","شاگردان من"],
+   ["subjects","📚","مضامین"],
+   ["myLessons","📖","درس‌های من"],
+   ["settings","⚙️","حساب من"]
+  ];
+
+ }
+
+ else{
+
+  items=[
+   ["home","🏠","صفحه اصلی"],
+   ["teachers","👨‍🏫","استادان"],
+   ["subjects","📚","مضامین"],
+   ["myLessons","📖","درس‌های من"],
+   ["myPayments","💳","فیس و پرداخت"],
+   ["settings","⚙️","حساب من"]
+  ];
+
+ }
+
+
+ nav.innerHTML=items.map(item=>`
+
+  <button
+   class="${currentPage===item[0]?"active":""}"
+   onclick="go('${item[0]}')">
+
+   <span>${item[1]}</span>
+   ${item[2]}
+
+  </button>
+
+ `).join("");
+
+}
+
+
+function go(page){
+
+ currentPage=page;
+
+ buildNav();
+
+ render();
+
+ document
+  .getElementById("sidebar")
+  .classList.remove("open");
+
+}
+
+
+function toggleSidebar(){
+
+ document
+  .getElementById("sidebar")
+  .classList.toggle("open");
+
+}
+
+
+function updateUserUI(){
+
+ document.getElementById("topName")
+  .textContent=currentUser.name;
+
+ document.getElementById("topRole")
+  .textContent=roleName(currentUser.role);
+
+ document.getElementById("topAvatar")
+  .textContent=
+   currentUser.role==="admin"
+   ?"👑":
+   currentUser.role==="teacher"
+   ?"👨‍🏫":"👨‍🎓";
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+ const content=
+  document.getElementById("content");
+
+ if(currentUser.role==="admin")
+  content.innerHTML=
+   renderAdmin(currentPage);
+
+ else if(currentUser.role==="teacher")
+  content.innerHTML=
+   renderTeacher(currentPage);
+
+ else
+  content.innerHTML=
+   renderStudent(currentPage);
+
+}
+
+
+function hero(){
+
+ return `
+
+ <section class="hero">
+
+  <div class="hero-content">
+
+   <h1>
+    به آموزشگاه علمی خوش آمدید 🎓
+   </h1>
+
+   <p>
+    با ما آینده روشن‌تر بسازید.
+    در محیطی علمی، دوستانه و استاندارد،
+    درس‌ها، استادان، شاگردان و پرداخت‌ها
+    را منظم مدیریت کنید.
+   </p>
+
+  </div>
+
+ </section>
+
+ `;
+
+}
+
+
+function renderHome(){
+
+ let cards="";
+
+
+ if(currentUser.role==="admin"){
+
+  cards=`
+
+  <div class="role-card teacher">
+
+   <div class="icon">👨‍🏫</div>
+
+   <h3>استادان</h3>
+
+   <p>
+    مدیریت استادان، تخصص،
+    حساب‌ها و درس‌های آنان.
+   </p>
+
+   <button class="btn"
+           onclick="go('teachers')">
+    ورود به استادان ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card student">
+
+   <div class="icon">👨‍🎓</div>
+
+   <h3>شاگردان</h3>
+
+   <p>
+    کنترول اطلاعات، کورس،
+    فیس، پرداخت و وضعیت شاگردان.
+   </p>
+
+   <button class="btn green"
+           onclick="go('students')">
+    ورود به شاگردان ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card admin">
+
+   <div class="icon">👑</div>
+
+   <h3>مدیر عمومی</h3>
+
+   <p>
+    کنترول کامل آموزشگاه،
+    گزارش‌ها و سطل زباله.
+   </p>
+
+   <button class="btn purple"
+           onclick="go('reports')">
+    داشبورد مدیر ←
+   </button>
+
+  </div>
+
+  `;
+
+ }
+
+ else if(currentUser.role==="teacher"){
+
+  cards=`
+
+  <div class="role-card teacher">
+
+   <div class="icon">👨‍🎓</div>
+
+   <h3>شاگردان من</h3>
+
+   <p>
+    شاگردان مربوط به کورس‌های خود
+    را مشاهده کنید.
+   </p>
+
+   <button class="btn"
+           onclick="go('myStudents')">
+    مشاهده شاگردان ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card teacher">
+
+   <div class="icon">📚</div>
+
+   <h3>مضامین</h3>
+
+   <p>
+    کورس‌ها و درس‌های آموزشی.
+   </p>
+
+   <button class="btn"
+           onclick="go('subjects')">
+    مشاهده مضامین ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card teacher">
+
+   <div class="icon">📖</div>
+
+   <h3>درس‌های من</h3>
+
+   <p>
+    ایجاد و مدیریت درس‌های استاد.
+   </p>
+
+   <button class="btn"
+           onclick="go('myLessons')">
+    مشاهده درس‌ها ←
+   </button>
+
+  </div>
+
+  `;
+
+ }
+
+ else{
+
+  cards=`
+
+  <div class="role-card student">
+
+   <div class="icon">👨‍🏫</div>
+
+   <h3>استادان</h3>
+
+   <p>
+    استاد مورد نظر را انتخاب کنید
+    و درس‌های او را ببینید.
+   </p>
+
+   <button class="btn"
+           onclick="go('teachers')">
+    مشاهده استادان ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card student">
+
+   <div class="icon">📚</div>
+
+   <h3>مضامین</h3>
+
+   <p>
+    مضمون، کورس و درس مورد نظر
+    خود را انتخاب کنید.
+   </p>
+
+   <button class="btn green"
+           onclick="go('subjects')">
+    مشاهده مضامین ←
+   </button>
+
+  </div>
+
+
+  <div class="role-card student">
+
+   <div class="icon">📖</div>
+
+   <h3>درس‌های من</h3>
+
+   <p>
+    درس‌های اختصاص‌یافته و فایل‌های
+    آموزشی خود را ببینید.
+   </p>
+
+   <button class="btn purple"
+           onclick="go('myLessons')">
+    درس‌های من ←
+   </button>
+
+  </div>
+
+  `;
+
+ }
+
+
+ return hero()+`
+
+ <div class="section-title">
+
+  <h2>
+   دسترسی سریع
+  </h2>
+
+  <small>
+   ${roleName(currentUser.role)}
+  </small>
+
+ </div>
+
+ <div class="cards">
+  ${cards}
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+function renderAdmin(page){
+
+ if(page==="home")
+  return renderHome();
+
+ if(page==="teachers")
+  return adminTeachers();
+
+ if(page==="students")
+  return adminStudents();
+
+ if(page==="subjects")
+  return adminSubjects();
+
+ if(page==="lessons")
+  return adminLessons();
+
+ if(page==="payments")
+  return adminPayments();
+
+ if(page==="trash")
+  return adminTrash();
+
+ if(page==="reports")
+  return adminReports();
+
+ if(page==="settings")
+  return settingsPage();
+
+ return renderHome();
+
+}
+
+
+/* ADMIN TEACHERS */
+
+function adminTeachers(){
+
+ return `
+
+ <div class="section-title">
+
+  <h2>👨‍🏫 مدیریت استادان</h2>
+
+  <button class="btn"
+          onclick="teacherModal()">
+   ➕ استاد جدید
+  </button>
+
+ </div>
+
+
+ <div class="panel teacher-area">
+
+  <div class="toolbar">
+
+   <div class="search"
+        style="max-width:100%">
+
+    🔎
+
+    <input
+     placeholder="جستجوی استاد..."
+     oninput="filterCards('teacherGrid',this.value)">
+
+   </div>
+
+  </div>
+
+
+  <div id="teacherGrid"
+       class="grid3">
+
+   ${
+    db.teachers.map(t=>
+     teacherCard(t,true)
+    ).join("")
+    ||
+    empty(
+     "👨‍🏫",
+     "هنوز استادی ثبت نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function teacherCard(t,admin=false){
+
+ const lessonCount=
+  db.lessons.filter(
+   l=>l.teacherId===t.id&&!l.deleted
+  ).length;
+
+ return `
+
+ <div class="teacher-card">
+
+  <div style="font-size:35px">
+   👨‍🏫
+  </div>
+
+  <h3>
+   ${esc(t.name)}
+  </h3>
+
+  <div class="muted">
+
+   تخصص:
+   ${esc(t.specialty||"ثبت نشده")}
+
+   <br>
+
+   📞 ${esc(t.phone||"—")}
+
+   <br>
+
+   ✉️ ${esc(t.email||"—")}
+
+   <br>
+
+   📖 ${lessonCount} درس
+
+  </div>
+
+  ${
+   admin
+   ?
+
+   `<div class="actions"
+         style="margin-top:10px">
+
+    <button class="btn sm"
+            onclick="teacherModal('${t.id}')">
+     ✏️ ویرایش
+    </button>
+
+    <button class="btn sm red"
+            onclick="deleteTeacher('${t.id}')">
+     🗑️ حذف
+    </button>
+
+    <button class="btn sm light"
+            onclick="teacherLessons('${t.id}')">
+     📖 درس‌ها
+    </button>
+
+   </div>`
+
+   :
+
+   `<button class="btn full"
+           style="margin-top:10px"
+           onclick="teacherLessons('${t.id}')">
+    مشاهده درس‌های استاد
+   </button>`
+  }
+
+ </div>
+
+ `;
+
+}
+
+
+/* TEACHER LESSONS */
+
+function teacherLessons(id){
+
+ const teacher=
+  db.teachers.find(t=>t.id===id);
+
+ if(!teacher)return;
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   👨‍🏫 ${esc(teacher.name)}
+   | درس‌ها
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+ ${
+  lessonListHTML(
+   db.lessons.filter(
+    l=>l.teacherId===id&&!l.deleted
+   )
+  )
+ }
+
+ `);
+
+}
+
+
+/* STUDENTS */
+
+function adminStudents(){
+
+ const students=
+  db.users.filter(u=>u.role==="student");
+
+ return `
+
+ <div class="section-title">
+
+  <h2>👨‍🎓 مدیریت شاگردان</h2>
+
+  <button class="btn green"
+          onclick="studentModal()">
+   ➕ شاگرد جدید
+  </button>
+
+ </div>
+
+
+ <div class="panel">
+
+  <div class="toolbar">
+
+   <div class="search"
+        style="max-width:100%">
+
+    🔎
+
+    <input
+     placeholder="جستجوی نام، پدر، تلفن یا ایمیل..."
+     oninput="filterTable(this.value,'studentsTable')">
+
+   </div>
+
+  </div>
+
+
+  <div class="table-wrap">
+
+   <table id="studentsTable">
+
+    <thead>
+
+     <tr>
+      <th>نام</th>
+      <th>نام پدر</th>
+      <th>تلفن</th>
+      <th>ایمیل</th>
+      <th>کورس</th>
+      <th>فیس</th>
+      <th>پرداخت</th>
+      <th>باقی</th>
+      <th>وضعیت</th>
+      <th>عملیات</th>
+     </tr>
+
+    </thead>
+
+    <tbody>
+
+     ${
+      students.map(
+       u=>studentRow(u)
+      ).join("")
+      ||
+      `<tr>
+       <td colspan="10">
+        ${empty(
+         "👨‍🎓",
+         "شاگردی ثبت نشده است."
+        )}
+       </td>
+      </tr>`
+     }
+
+    </tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function studentRow(u){
+
+ const paid=sumPaid(u);
+
+ const remaining=
+  Math.max(
+   0,
+   Number(u.fee||0)-paid
+  );
+
+ const status=
+  remaining<=0 &&
+  Number(u.fee||0)>0
+  ?"تکمیل"
+  :"باقی‌دار";
+
+ const courses=
+  (u.courseIds||[])
+  .map(id=>
+   db.subjects.find(
+    s=>s.id===id
+   )?.name
+  )
+  .filter(Boolean)
+  .join("، ")
+  ||"—";
+
+ return `
+
+ <tr>
+
+  <td>
+   <b>${esc(u.name)}</b>
+  </td>
+
+  <td>
+   ${esc(u.fatherName||"—")}
+  </td>
+
+  <td>
+   ${esc(u.phone||"—")}
+  </td>
+
+  <td>
+   ${esc(u.email)}
+  </td>
+
+  <td>
+   ${esc(courses)}
+  </td>
+
+  <td>
+   ${money(u.fee)}
+  </td>
+
+  <td>
+   ${money(paid)}
+  </td>
+
+  <td>
+   ${money(remaining)}
+  </td>
+
+  <td>
+
+   <span class="status ${
+    status==="تکمیل"
+    ?"paid"
+    :"due"
+   }">
+
+    ${status}
+
+   </span>
+
+  </td>
+
+  <td>
+
+   <div class="actions">
+
+    <button class="btn sm green"
+            onclick="paymentModal('${u.id}')">
+     💰 پرداخت
+    </button>
+
+    <button class="btn sm light"
+            onclick="billModal('${u.id}')">
+     🧾 بیل
+    </button>
+
+    <button class="btn sm"
+            onclick="studentModal('${u.id}')">
+     ✏️
+    </button>
+
+    <button class="btn sm red"
+            onclick="deleteStudent('${u.id}')">
+     🗑️
+    </button>
+
+   </div>
+
+  </td>
+
+ </tr>
+
+ `;
+
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+function adminSubjects(){
+
+ const cats=[
+  ...new Set(
+   db.subjects.map(s=>s.category)
+  )
+ ];
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📚 مضامین و کورس‌ها
+  </h2>
+
+  <button class="btn"
+          onclick="subjectModal()">
+   ➕ کورس جدید
+  </button>
+
+ </div>
+
+
+ <div class="panel">
+
+  <div class="grid3">
+
+   ${
+    db.subjects.map(
+     s=>subjectCard(s,true)
+    ).join("")
+    ||
+    empty(
+     "📚",
+     "کورس ثبت نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+
+ <div class="section-title">
+
+  <h2>
+   دسته‌بندی‌ها
+  </h2>
+
+  <small>
+   ${cats.length} دسته
+  </small>
+
+ </div>
+
+
+ <div class="grid3">
+
+  ${
+   cats.map(c=>`
+
+    <div class="stat">
+
+     <div style="font-size:30px">
+      ${iconFor(c)}
+     </div>
+
+     <div>
+
+      <b>${esc(c)}</b>
+
+      <div class="muted">
+       ${
+        db.subjects.filter(
+         s=>s.category===c
+        ).length
+       }
+       کورس
+      </div>
+
+     </div>
+
+    </div>
+
+   `).join("")
+  }
+
+ </div>
+
+ `;
+
+}
+
+
+function subjectCard(s,admin=false){
+
+ const count=
+  db.lessons.filter(
+   l=>l.courseId===s.id&&!l.deleted
+  ).length;
+
+ return `
+
+ <div class="subject-card">
+
+  <div class="subject-icon">
+   ${s.icon||iconFor(s.category)}
+  </div>
+
+  <span class="tag">
+   ${esc(s.category)}
+  </span>
+
+  <h3>
+   ${esc(s.name)}
+  </h3>
+
+  <div class="muted">
+
+   ${esc(
+    s.description||
+    "بدون توضیح"
+   )}
+
+   <br>
+
+   📖 ${count} درس
+
+  </div>
+
+  <div class="actions"
+       style="margin-top:10px">
+
+   <button class="btn sm"
+           onclick="subjectLessons('${s.id}')">
+    📖 درس‌ها
+   </button>
+
+   ${
+    admin
+    ?
+
+    `<button class="btn sm light"
+            onclick="subjectModal('${s.id}')">
+     ✏️
+    </button>
+
+    <button class="btn sm red"
+            onclick="deleteSubject('${s.id}')">
+     🗑️
+    </button>`
+
+    :""
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function subjectLessons(id){
+
+ const subject=
+  db.subjects.find(
+   s=>s.id===id
+  );
+
+ if(!subject)return;
+
+ selectedSubjectId=id;
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   ${subject.icon||"📚"}
+   ${esc(subject.name)}
+   | درس‌ها
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+ ${
+  currentUser.role==="admin"||
+  currentUser.role==="teacher"
+
+  ?
+
+  `<button class="btn"
+           onclick="closeModal();lessonModal('','${subject.id}')">
+   ➕ افزودن درس
+  </button>
+  <hr>`
+
+  :""
+ }
+
+ ${
+  lessonListHTML(
+   db.lessons.filter(
+    l=>l.courseId===id&&!l.deleted
+   )
+  )
+ }
+
+ `);
+
+}
+
+
+/* =====================================================
+   LESSONS
+===================================================== */
+
+function adminLessons(){
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📖 مدیریت تمام درس‌ها
+  </h2>
+
+  <button class="btn"
+          onclick="lessonModal()">
+   ➕ درس جدید
+  </button>
+
+ </div>
+
+
+ <div class="panel">
+
+  <div class="toolbar">
+
+   <div class="search"
+        style="max-width:100%">
+
+    🔎
+
+    <input
+     placeholder="جستجوی درس..."
+     oninput="filterCards('lessonGrid',this.value)">
+
+   </div>
+
+  </div>
+
+
+  <div id="lessonGrid"
+       class="grid2">
+
+   ${
+    db.lessons
+    .filter(l=>!l.deleted)
+    .map(l=>lessonCard(l,true))
+    .join("")
+    ||
+    empty(
+     "📖",
+     "درسی ثبت نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function lessonListHTML(lessons){
+
+ return `
+
+ <div class="grid2"
+      style="margin-top:12px">
+
+  ${
+   lessons.map(
+    l=>lessonCard(
+     l,
+     currentUser.role==="admin"||
+     currentUser.role==="teacher"
+    )
+   ).join("")
+   ||
+   empty(
+    "📖",
+    "درسی برای نمایش وجود ندارد."
+   )
+  }
+
+ </div>
+
+ `;
+
+}
+
+
+function lessonCard(l,canEdit=false){
+
+ const subject=
+  db.subjects.find(
+   s=>s.id===l.courseId
+  );
+
+ const teacher=
+  db.teachers.find(
+   t=>t.id===l.teacherId
+  );
+
+ const type=
+  (l.fileType||"").split("/")[0];
+
+ let media="";
+
+ if(type==="image"&&l.file){
+
+  media=`
+   <img
+    class="file-preview"
+    src="${l.file}"
+    alt="">
+  `;
+
+ }
+
+ if(type==="video"&&l.file){
+
+  media=`
+   <video
+    class="video-preview"
+    controls
+    src="${l.file}">
+   </video>
+  `;
+
+ }
+
+ return `
+
+ <div class="lesson-card">
+
+  <span class="tag">
+   درس ${esc(String(l.number))}
+  </span>
+
+  <h3>
+   ${esc(l.icon||"📖")}
+   ${esc(l.title)}
+  </h3>
+
+  <div class="muted">
+
+   ${esc(
+    l.description||
+    "بدون توضیح"
+   )}
+
+   <br>
+
+   👨‍🏫
+   ${esc(
+    teacher?.name||
+    "بدون استاد"
+   )}
+
+   |
+
+   📚
+   ${esc(
+    subject?.name||
+    "بدون کورس"
+   )}
+
+   <br>
+
+   📅 ${esc(l.date||"—")}
+
+  </div>
+
+  ${media}
+
+  <div class="file-box"
+       style="margin-top:8px">
+
+   ${
+    l.file
+
+    ?
+
+    `📎
+     <b>
+      ${esc(
+       l.fileName||
+       "فایل آموزشی"
+      )}
+     </b>
+
+     <br>
+
+     <button
+      class="btn sm green"
+      style="margin-top:7px"
+      onclick="downloadFile('${l.id}')">
+
+      ⬇️ دانلود
+
+     </button>`
+
+    :
+
+    "📎 بدون فایل"
+   }
+
+  </div>
+
+  <div class="actions"
+       style="margin-top:9px">
+
+   ${
+    currentUser.role==="student"
+
+    ?
+
+    `<button
+      class="btn sm green"
+      onclick="completeLesson('${l.id}')">
+
+      ✓ انجام شد
+
+     </button>`
+
+    :""
+   }
+
+   ${
+    canEdit
+
+    ?
+
+    `<button
+      class="btn sm"
+      onclick="lessonModal('${l.id}')">
+
+      ✏️ ویرایش
+
+     </button>
+
+     <button
+      class="btn sm red"
+      onclick="deleteLesson('${l.id}')">
+
+      🗑️ حذف
+
+     </button>`
+
+    :""
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   PAYMENTS
+===================================================== */
+
+function adminPayments(){
+
+ const students=
+  db.users.filter(
+   u=>u.role==="student"
+  );
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   💳 پرداخت‌ها و بیل‌ها
+  </h2>
+
+  <small>
+   سابقه پرداخت تمام شاگردان
+  </small>
+
+ </div>
+
+
+ <div class="panel">
+
+  <div class="table-wrap">
+
+   <table>
+
+    <thead>
+
+     <tr>
+      <th>شاگرد</th>
+      <th>کورس</th>
+      <th>فیس</th>
+      <th>پرداخت</th>
+      <th>باقی</th>
+      <th>آخرین پرداخت</th>
+      <th>عملیات</th>
+     </tr>
+
+    </thead>
+
+    <tbody>
+
+     ${
+      students.map(u=>{
+
+       const paid=sumPaid(u);
+
+       const remain=
+        Math.max(
+         0,
+         Number(u.fee||0)-paid
+        );
+
+       const last=
+        (u.payments||[]).slice(-1)[0];
+
+       return `
+
+       <tr>
+
+        <td>
+         ${esc(u.name)}
+        </td>
+
+        <td>
+         ${esc(
+          (u.courseIds||[])
+          .map(id=>
+           db.subjects.find(
+            s=>s.id===id
+           )?.name
+          )
+          .filter(Boolean)
+          .join("، ")||"—"
+         )}
+        </td>
+
+        <td>${money(u.fee)}</td>
+
+        <td>${money(paid)}</td>
+
+        <td>${money(remain)}</td>
+
+        <td>
+         ${last?esc(last.date):"—"}
+        </td>
+
+        <td>
+
+         <button
+          class="btn sm green"
+          onclick="paymentModal('${u.id}')">
+          💰 ثبت پرداخت
+         </button>
+
+         <button
+          class="btn sm light"
+          onclick="billModal('${u.id}')">
+          🧾 بیل
+         </button>
+
+        </td>
+
+       </tr>
+
+       `;
+
+      }).join("")
+
+     }
+
+    </tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   RECYCLE BIN
+===================================================== */
+
+function adminTrash(){
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   🗑️ سطل زباله مدیر عمومی
+  </h2>
+
+  <button
+   class="btn red"
+   onclick="emptyTrash()">
+
+   🗑️ حذف دائمی همه
+
+  </button>
+
+ </div>
+
+
+ <div class="panel">
+
+  <div class="notice"
+       style="margin-bottom:12px">
+
+   فقط مدیر عمومی به این قسمت
+   دسترسی دارد.
+
+   موارد حذف‌شده را می‌توان
+   بازیابی یا برای همیشه حذف کرد.
+
+  </div>
+
+
+  <div class="table-wrap">
+
+   <table>
+
+    <thead>
+
+     <tr>
+      <th>نوع</th>
+      <th>نام / عنوان</th>
+      <th>تاریخ حذف</th>
+      <th>عملیات</th>
+     </tr>
+
+    </thead>
+
+    <tbody>
+
+     ${
+      db.trash.map((x,i)=>`
+
+       <tr>
+
+        <td>
+         ${esc(x.type)}
+        </td>
+
+        <td>
+         ${esc(x.label)}
+        </td>
+
+        <td>
+         ${esc(x.deletedAt)}
+        </td>
+
+        <td>
+
+         <button
+          class="btn sm green"
+          onclick="restoreTrash(${i})">
+
+          ↩️ بازیابی
+
+         </button>
+
+         <button
+          class="btn sm red"
+          onclick="permanentTrash(${i})">
+
+          حذف دائمی
+
+         </button>
+
+        </td>
+
+       </tr>
+
+      `).join("")
+
+      ||
+
+      `<tr>
+       <td colspan="4">
+        ${empty(
+         "🗑️",
+         "سطل زباله خالی است."
+        )}
+       </td>
+      </tr>`
+
+     }
+
+    </tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   ADMIN REPORT
+===================================================== */
+
+function adminReports(){
+
+ const students=
+  db.users.filter(
+   u=>u.role==="student"
+  );
+
+ const teachers=
+  db.teachers.length;
+
+ const lessons=
+  db.lessons.filter(
+   l=>!l.deleted
+  ).length;
+
+ const paid=
+  students.reduce(
+   (a,u)=>a+sumPaid(u),
+   0
+  );
+
+ const fees=
+  students.reduce(
+   (a,u)=>a+Number(u.fee||0),
+   0
+  );
+
+ const remain=
+  Math.max(0,fees-paid);
+
+ const percent=
+  fees
+  ?Math.min(100,paid/fees*100)
+  :0;
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📊 داشبورد مدیر عمومی
+  </h2>
+
+  <small>
+   نمای کلی آموزشگاه
+  </small>
+
+ </div>
+
+
+ <div class="stats">
+
+  <div class="stat">
+
+   👨‍🎓
+
+   <div>
+    <div class="muted">
+     شاگردان
+    </div>
+    <div class="big">
+     ${students.length}
+    </div>
+   </div>
+
+  </div>
+
+
+  <div class="stat">
+
+   👨‍🏫
+
+   <div>
+    <div class="muted">
+     استادان
+    </div>
+    <div class="big">
+     ${teachers}
+    </div>
+   </div>
+
+  </div>
+
+
+  <div class="stat">
+
+   📖
+
+   <div>
+    <div class="muted">
+     درس‌ها
+    </div>
+    <div class="big">
+     ${lessons}
+    </div>
+   </div>
+
+  </div>
+
+
+  <div class="stat">
+
+   💰
+
+   <div>
+    <div class="muted">
+     دریافت‌شده
+    </div>
+    <div class="big">
+     ${money(paid)}
+    </div>
+   </div>
+
+  </div>
+
+ </div>
+
+
+ <div class="grid2"
+      style="margin-top:15px">
+
+  <div class="panel">
+
+   <h3>
+    💵 وضعیت فیس
+   </h3>
+
+   <div class="muted">
+
+    مجموع فیس:
+    ${money(fees)}
+
+    <br>
+
+    دریافت‌شده:
+    ${money(paid)}
+
+    <br>
+
+    باقی‌مانده:
+    ${money(remain)}
+
+   </div>
+
+   <div class="progress"
+        style="margin-top:12px">
+
+    <i style="width:${percent}%"></i>
+
+   </div>
+
+  </div>
+
+
+  <div class="panel">
+
+   <h3>
+    📚 وضعیت آموزشی
+   </h3>
+
+   <div class="muted">
+
+    کورس‌ها:
+    ${db.subjects.length}
+
+    <br>
+
+    درس‌های فعال:
+    ${lessons}
+
+    <br>
+
+    فایل‌های آموزشی:
+    ${
+     db.lessons.filter(
+      l=>!l.deleted&&l.file
+     ).length
+    }
+
+   </div>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   TEACHER
+===================================================== */
+
+function renderTeacher(page){
+
+ if(page==="home")
+  return renderHome();
+
+ if(page==="myStudents")
+  return teacherStudents();
+
+ if(page==="subjects")
+  return teacherSubjects();
+
+ if(page==="myLessons")
+  return teacherLessonsPage();
+
+ if(page==="settings")
+  return settingsPage();
+
+ return renderHome();
+
+}
+
+
+function assignedStudents(teacherId){
+
+ const courseIds=
+  db.lessons
+  .filter(
+   l=>l.teacherId===teacherId&&!l.deleted
+  )
+  .map(l=>l.courseId);
+
+ return db.users.filter(u=>
+  u.role==="student" &&
+  (u.courseIds||[])
+  .some(c=>courseIds.includes(c))
+ );
+
+}
+
+
+function studentProgress(u){
+
+ const ids=u.courseIds||[];
+
+ const lessons=
+  db.lessons.filter(
+   l=>!l.deleted &&
+   (ids.length===0||
+    ids.includes(l.courseId))
+  );
+
+ const done=
+  (u.completedLessons||[])
+  .filter(id=>
+   lessons.some(
+    l=>l.id===id
+   )
+  ).length;
+
+ return lessons.length
+  ?Math.round(done/lessons.length*100)
+  :0;
+
+}
+
+
+function teacherStudents(){
+
+ const mine=
+  assignedStudents(
+   currentUser.id
+  );
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   👨‍🎓 شاگردان من
+  </h2>
+
+  <small>
+   ${mine.length} شاگرد
+  </small>
+
+ </div>
+
+
+ <div class="panel teacher-area">
+
+  <div class="toolbar">
+
+   <div class="search"
+        style="max-width:100%">
+
+    🔎
+
+    <input
+     placeholder="جستجوی شاگرد..."
+     oninput="filterTable(this.value,'teacherStudentsTable')">
+
+   </div>
+
+  </div>
+
+
+  <div class="table-wrap">
+
+   <table id="teacherStudentsTable">
+
+    <thead>
+
+     <tr>
+      <th>نام</th>
+      <th>نام پدر</th>
+      <th>تلفن</th>
+      <th>کورس</th>
+      <th>پیشرفت</th>
+     </tr>
+
+    </thead>
+
+    <tbody>
+
+     ${
+      mine.map(u=>`
+
+       <tr>
+
+        <td>
+         ${esc(u.name)}
+        </td>
+
+        <td>
+         ${esc(u.fatherName||"—")}
+        </td>
+
+        <td>
+         ${esc(u.phone||"—")}
+        </td>
+
+        <td>
+         ${esc(
+          (u.courseIds||[])
+          .map(id=>
+           db.subjects.find(
+            s=>s.id===id
+           )?.name
+          )
+          .filter(Boolean)
+          .join("، ")||"—"
+         )}
+        </td>
+
+        <td>
+
+         ${studentProgress(u)}%
+
+         <div class="progress">
+
+          <i style="width:${studentProgress(u)}%"></i>
+
+         </div>
+
+        </td>
+
+       </tr>
+
+      `).join("")
+
+      ||
+
+      `<tr>
+       <td colspan="5">
+        ${empty(
+         "👨‍🎓",
+         "شاگرد مرتبطی نیست."
+        )}
+       </td>
+      </tr>`
+
+     }
+
+    </tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function teacherSubjects(){
+
+ const courseIds=[
+  ...new Set(
+   assignedStudents(
+    currentUser.id
+   ).flatMap(
+    u=>u.courseIds||[]
+   )
+  )
+ ];
+
+ const subjects=
+  db.subjects.filter(s=>
+   courseIds.includes(s.id) ||
+   db.lessons.some(
+    l=>
+     l.teacherId===currentUser.id &&
+     l.courseId===s.id &&
+     !l.deleted
+   )
+  );
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📚 مضامین استاد
+  </h2>
+
+ </div>
+
+
+ <div class="panel teacher-area">
+
+  <div class="grid3">
+
+   ${
+    subjects.map(
+     s=>subjectCard(s,false)
+    ).join("")
+    ||
+    empty(
+     "📚",
+     "کورس مرتبطی وجود ندارد."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function teacherLessonsPage(){
+
+ const lessons=
+  db.lessons.filter(
+   l=>
+    l.teacherId===currentUser.id &&
+    !l.deleted
+  );
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📖 درس‌های من
+  </h2>
+
+  <button
+   class="btn"
+   onclick="lessonModal()">
+
+   ➕ افزودن درس
+
+  </button>
+
+ </div>
+
+
+ <div class="panel teacher-area">
+
+  <div class="grid2">
+
+   ${
+    lessons.map(
+     l=>lessonCard(l,true)
+    ).join("")
+    ||
+    empty(
+     "📖",
+     "هنوز درسی نساخته‌اید."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   STUDENT
+===================================================== */
+
+function renderStudent(page){
+
+ if(page==="home")
+  return renderHome();
+
+ if(page==="teachers")
+  return studentTeachers();
+
+ if(page==="subjects")
+  return studentSubjects();
+
+ if(page==="myLessons")
+  return studentLessons();
+
+ if(page==="myPayments")
+  return studentPayments();
+
+ if(page==="settings")
+  return settingsPage();
+
+ return renderHome();
+
+}
+
+
+function studentTeachers(){
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   👨‍🏫 استادان
+  </h2>
+
+  <small>
+   استاد مورد نظر خود را انتخاب کنید
+  </small>
+
+ </div>
+
+
+ <div class="panel student-area">
+
+  <div class="grid3">
+
+   ${
+    db.teachers
+    .filter(t=>t.active!==false)
+    .map(t=>teacherCard(t,false))
+    .join("")
+
+    ||
+
+    empty(
+     "👨‍🏫",
+     "استادی ثبت نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function studentSubjects(){
+
+ const assigned=
+  currentUser.courseIds||[];
+
+ const subjects=
+  assigned.length
+
+  ?
+
+  db.subjects.filter(
+   s=>assigned.includes(s.id)
+  )
+
+  :
+
+  db.subjects;
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📚 مضامین و کورس‌ها
+  </h2>
+
+  <small>
+   ${assigned.length
+    ?"کورس‌های شما"
+    :"همه کورس‌ها"}
+  </small>
+
+ </div>
+
+
+ <div class="panel student-area">
+
+  <div class="grid3">
+
+   ${
+    subjects.map(
+     s=>subjectCard(s,false)
+    ).join("")
+    ||
+    empty(
+     "📚",
+     "کورس اختصاص داده نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function studentLessons(){
+
+ const ids=
+  currentUser.courseIds||[];
+
+ const lessons=
+  db.lessons.filter(
+   l=>
+    !l.deleted &&
+    (
+     ids.length===0||
+     ids.includes(l.courseId)
+    )
+  );
+
+ const done=
+  currentUser.completedLessons||[];
+
+ const percent=
+  lessons.length
+  ?Math.round(done.filter(id=>
+   lessons.some(l=>l.id===id)
+  ).length/lessons.length*100)
+  :0;
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   📖 درس‌های من
+  </h2>
+
+  <small>
+   ${percent}% تکمیل شده
+  </small>
+
+ </div>
+
+
+ <div class="panel student-area">
+
+  <div style="margin-bottom:15px">
+
+   <b>
+    پیشرفت آموزشی شما
+   </b>
+
+   <div class="progress"
+        style="margin-top:7px">
+
+    <i style="width:${percent}%"></i>
+
+   </div>
+
+  </div>
+
+
+  <div class="grid2">
+
+   ${
+    lessons.map(
+     l=>lessonCard(l,false)
+    ).join("")
+    ||
+    empty(
+     "📖",
+     "هنوز درسی به شما اختصاص داده نشده است."
+    )
+   }
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+function studentPayments(){
+
+ const paid=sumPaid(currentUser);
+
+ const remain=
+  Math.max(
+   0,
+   Number(currentUser.fee||0)-paid
+  );
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   💳 فیس و پرداخت‌های من
+  </h2>
+
+  <button
+   class="btn light"
+   onclick="billModal('${currentUser.id}')">
+
+   🧾 مشاهده بیل
+
+  </button>
+
+ </div>
+
+
+ <div class="stats">
+
+  <div class="stat">
+
+   💵
+
+   <div>
+
+    <div class="muted">
+     فیس
+    </div>
+
+    <div class="big">
+     ${money(currentUser.fee)}
+    </div>
+
+   </div>
+
+  </div>
+
+
+  <div class="stat">
+
+   ✅
+
+   <div>
+
+    <div class="muted">
+     پرداخت
+    </div>
+
+    <div class="big">
+     ${money(paid)}
+    </div>
+
+   </div>
+
+  </div>
+
+
+  <div class="stat">
+
+   ⏳
+
+   <div>
+
+    <div class="muted">
+     باقی
+    </div>
+
+    <div class="big">
+     ${money(remain)}
+    </div>
+
+   </div>
+
+  </div>
+
+ </div>
+
+
+ <div class="panel student-area"
+      style="margin-top:15px">
+
+  <h3>
+   سابقه پرداخت
+  </h3>
+
+  <div class="table-wrap">
+
+   <table>
+
+    <thead>
+
+     <tr>
+      <th>مبلغ</th>
+      <th>تاریخ</th>
+      <th>یادداشت</th>
+     </tr>
+
+    </thead>
+
+    <tbody>
+
+     ${
+      (currentUser.payments||[])
+      .map(p=>`
+
+       <tr>
+
+        <td>
+         ${money(p.amount)}
+        </td>
+
+        <td>
+         ${esc(p.date)}
+        </td>
+
+        <td>
+         ${esc(p.note||"—")}
+        </td>
+
+       </tr>
+
+      `).join("")
+
+      ||
+
+      `<tr>
+       <td colspan="3">
+        پرداختی ثبت نشده است.
+       </td>
+      </tr>`
+
+     }
+
+    </tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(html){
+
+ document.getElementById("modalBox")
+  .innerHTML=html;
+
+ document.getElementById("modal")
+  .classList.remove("hidden");
+
+}
+
+function closeModal(){
+
+ document.getElementById("modal")
+  .classList.add("hidden");
+
+ document.getElementById("modalBox")
+  .innerHTML="";
+
+}
+
+document.getElementById("modal")
+.addEventListener("click",function(e){
+
+ if(e.target.id==="modal")
+  closeModal();
+
+});
+
+
+/* =====================================================
+   TEACHER MODAL
+===================================================== */
+
+function teacherModal(id=""){
+
+ const teacher=
+  db.teachers.find(
+   t=>t.id===id
+  )||
+  {
+   name:"",
+   phone:"",
+   email:"",
+   specialty:"",
+   password:"Teacher@123",
+   active:true
+  };
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   ${id
+    ?"✏️ ویرایش استاد"
+    :"➕ افزودن استاد"}
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+
+ <form onsubmit="saveTeacher(event,'${id}')">
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     نام استاد
+    </label>
+
+    <input
+     id="tfName"
+     value="${esc(teacher.name)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     شماره تماس
+    </label>
+
+    <input
+     id="tfPhone"
+     value="${esc(teacher.phone)}">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     ایمیل ورود استاد
+    </label>
+
+    <input
+     id="tfEmail"
+     type="email"
+     value="${esc(teacher.email)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     رمز ورود استاد
+    </label>
+
+    <div class="password">
+
+     <input
+      id="tfPass"
+      type="password"
+      value="${id?"":esc(teacher.password)}"
+      ${id?"":"required"}>
+
+     <button
+      type="button"
+      class="eye"
+      onclick="togglePassword('tfPass',this)">
+      👁️
+     </button>
+
+    </div>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     تخصص
+    </label>
+
+    <input
+     id="tfSpec"
+     value="${esc(teacher.specialty)}"
+     placeholder="مثلاً شبکه، انگلیسی، خطاطی">
+
+   </div>
+
+  </div>
+
+
+  <label>
+
+   <input
+    id="tfActive"
+    type="checkbox"
+    ${teacher.active!==false?"checked":""}>
+
+   حساب استاد فعال باشد
+
+  </label>
+
+
+  <button
+   class="btn full"
+   style="margin-top:14px">
+
+   💾 ذخیره استاد
+
+  </button>
+
+ </form>
+
+ `);
+
+}
+
+
+function saveTeacher(e,id){
+
+ e.preventDefault();
+
+ let teacher=
+  db.teachers.find(
+   t=>t.id===id
+  );
+
+ const email=
+  document.getElementById("tfEmail")
+  .value.trim().toLowerCase();
+
+ if(
+  db.teachers.some(
+   t=>t.email &&
+   t.email.toLowerCase()===email &&
+   t.id!==id
+  )
+ ){
+
+  toast("این ایمیل قبلاً استفاده شده است.");
+
+  return;
+
+ }
+
+ const pass=
+  document.getElementById("tfPass").value;
+
+ if(pass&&!validPassword(pass)){
+
+  toast(
+   "رمز باید شامل حرف، عدد و علامت باشد."
+  );
+
+  return;
+
+ }
+
+ if(!teacher){
+
+  teacher={
+   id:uid("tea"),
+   password:"Teacher@123"
+  };
+
+  db.teachers.push(teacher);
+
+ }
+
+ Object.assign(
+  teacher,
+  {
+   name:document.getElementById("tfName").value.trim(),
+   phone:document.getElementById("tfPhone").value.trim(),
+   email,
+   specialty:document.getElementById("tfSpec").value.trim(),
+   active:document.getElementById("tfActive").checked
+  }
+ );
+
+ if(pass)
+  teacher.password=pass;
+
+ saveDB();
+
+ closeModal();
+
+ toast("استاد ذخیره شد.");
+
+ render();
+
+}
+
+
+/* =====================================================
+   SUBJECT MODAL
+===================================================== */
+
+function subjectModal(id=""){
+
+ const s=
+  db.subjects.find(
+   x=>x.id===id
+  )||
+  {
+   category:"کمپیوتر",
+   name:"",
+   description:"",
+   icon:"💻"
+  };
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   ${id
+    ?"✏️ ویرایش کورس"
+    :"➕ افزودن کورس"}
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+
+ <form onsubmit="saveSubject(event,'${id}')">
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     دسته / مضمون
+    </label>
+
+    <select id="sfCat">
+
+     <option>کمپیوتر</option>
+     <option>انگلیسی</option>
+     <option>خطاطی دری</option>
+     <option>سایر</option>
+
+    </select>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     نام کورس
+    </label>
+
+    <input
+     id="sfName"
+     value="${esc(s.name)}"
+     required
+     placeholder="مثلاً Word">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     آیکن
+    </label>
+
+    <input
+     id="sfIcon"
+     value="${esc(s.icon||iconFor(s.category))}">
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     توضیح
+    </label>
+
+    <input
+     id="sfDesc"
+     value="${esc(s.description)}">
+
+   </div>
+
+  </div>
+
+
+  <button
+   class="btn full"
+   style="margin-top:14px">
+
+   💾 ذخیره کورس
+
+  </button>
+
+ </form>
+
+ `);
+
+ document.getElementById("sfCat").value=
+  s.category;
+
+}
+
+
+function saveSubject(e,id){
+
+ e.preventDefault();
+
+ let s=
+  db.subjects.find(
+   x=>x.id===id
+  );
+
+ if(!s){
+
+  s={
+   id:uid("sub")
+  };
+
+  db.subjects.push(s);
+
+ }
+
+ Object.assign(
+  s,
+  {
+   category:
+    document.getElementById("sfCat").value,
+
+   name:
+    document.getElementById("sfName").value.trim(),
+
+   icon:
+    document.getElementById("sfIcon").value.trim()
+    ||
+    iconFor(
+     document.getElementById("sfCat").value
+    ),
+
+   description:
+    document.getElementById("sfDesc").value.trim()
+  }
+ );
+
+ saveDB();
+
+ closeModal();
+
+ toast("کورس ذخیره شد.");
+
+ render();
+
+}
+
+
+/* =====================================================
+   STUDENT MODAL
+===================================================== */
+
+function studentModal(id=""){
+
+ const u=
+  db.users.find(
+   x=>x.id===id
+  )||
+  {
+   name:"",
+   fatherName:"",
+   phone:"",
+   email:"",
+   password:"",
+   courseIds:[],
+   fee:0,
+   active:true,
+   payments:[]
+  };
+
+ const options=
+  db.subjects.map(s=>`
+
+   <option
+    value="${s.id}"
+    ${
+     (u.courseIds||[])
+     .includes(s.id)
+     ?"selected"
+     :""
+    }>
+
+    ${esc(s.category)}
+    →
+    ${esc(s.name)}
+
+   </option>
+
+  `).join("");
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   ${id
+    ?"✏️ ویرایش شاگرد"
+    :"➕ افزودن شاگرد"}
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+
+ <form onsubmit="saveStudent(event,'${id}')">
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     نام و نام خانوادگی
+    </label>
+
+    <input
+     id="ufName"
+     value="${esc(u.name)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     نام پدر
+    </label>
+
+    <input
+     id="ufFather"
+     value="${esc(u.fatherName)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     شماره تماس
+    </label>
+
+    <input
+     id="ufPhone"
+     value="${esc(u.phone)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     ایمیل
+    </label>
+
+    <input
+     id="ufEmail"
+     type="email"
+     value="${esc(u.email)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     رمز عبور
+     ${id?"(خالی = بدون تغییر)":""}
+    </label>
+
+    <div class="password">
+
+     <input
+      id="ufPass"
+      type="password"
+      ${id?"":"required"}>
+
+     <button
+      type="button"
+      class="eye"
+      onclick="togglePassword('ufPass',this)">
+      👁️
+     </button>
+
+    </div>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     فیس
+    </label>
+
+    <input
+     id="ufFee"
+     type="number"
+     min="0"
+     value="${Number(u.fee||0)}">
+
+   </div>
+
+
+   <div class="field full">
+
+    <label>
+     کورس‌ها
+    </label>
+
+    <select
+     id="ufCourses"
+     multiple
+     size="5">
+
+     ${options}
+
+    </select>
+
+   </div>
+
+  </div>
+
+
+  <label>
+
+   <input
+    id="ufActive"
+    type="checkbox"
+    ${u.active!==false?"checked":""}>
+
+   حساب شاگرد فعال باشد
+
+  </label>
+
+
+  <button
+   class="btn green full"
+   style="margin-top:14px">
+
+   💾 ذخیره شاگرد
+
+  </button>
+
+ </form>
+
+ `);
+
+}
+
+
+function saveStudent(e,id){
+
+ e.preventDefault();
+
+ let u=
+  db.users.find(
+   x=>x.id===id
+  );
+
+ const email=
+  document.getElementById("ufEmail")
+  .value.trim().toLowerCase();
+
+ if(
+  db.users.some(
+   x=>
+    x.email.toLowerCase()===email &&
+    x.id!==id
+  )
+ ){
+
+  toast(
+   "این ایمیل قبلاً استفاده شده است."
+  );
+
+  return;
+
+ }
+
+ if(!u){
+
+  u={
+   id:uid("stu"),
+   role:"student",
+   payments:[],
+   completedLessons:[]
+  };
+
+  db.users.push(u);
+
+ }
+
+ const password=
+  document.getElementById("ufPass").value;
+
+ if(
+  password &&
+  !validPassword(password)
+ ){
+
+  toast(
+   "رمز باید شامل حرف، عدد و علامت باشد."
+  );
+
+  return;
+
+ }
+
+ Object.assign(
+  u,
+  {
+   name:
+    document.getElementById("ufName").value.trim(),
+
+   fatherName:
+    document.getElementById("ufFather").value.trim(),
+
+   phone:
+    document.getElementById("ufPhone").value.trim(),
+
+   email,
+
+   fee:
+    Number(
+     document.getElementById("ufFee").value||0
+    ),
+
+   courseIds:
+    [...document.getElementById("ufCourses")
+     .selectedOptions]
+    .map(x=>x.value),
+
+   active:
+    document.getElementById("ufActive").checked
+  }
+ );
+
+ if(password)
+  u.password=password;
+
+ saveDB();
+
+ closeModal();
+
+ toast("اطلاعات شاگرد ذخیره شد.");
+
+ render();
+
+}
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+function paymentModal(id){
+
+ const u=
+  db.users.find(
+   x=>x.id===id
+  );
+
+ if(!u)return;
+
+ const paid=sumPaid(u);
+
+ const remaining=
+  Math.max(
+   0,
+   Number(u.fee||0)-paid
+  );
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   💰 ثبت پرداخت
+   |
+   ${esc(u.name)}
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+
+ <div class="notice">
+
+  فیس:
+  <b>${money(u.fee)}</b>
+
+  |
+
+  پرداخت:
+  <b>${money(paid)}</b>
+
+  |
+
+  باقی:
+  <b>${money(remaining)}</b>
+
+ </div>
+
+
+ <form
+  onsubmit="savePayment(event,'${id}')"
+  style="margin-top:12px">
+
+  <div class="form-grid">
+
+   <div class="field">
+
+    <label>
+     مبلغ پرداختی
+    </label>
+
+    <input
+     id="payAmount"
+     type="number"
+     min="1"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     تاریخ
+    </label>
+
+    <input
+     id="payDate"
+     type="date"
+     value="${today()}"
+     required>
+
+   </div>
+
+
+   <div class="field full">
+
+    <label>
+     یادداشت / شماره رسید
+    </label>
+
+    <input
+     id="payNote"
+     placeholder="اختیاری">
+
+   </div>
+
+  </div>
+
+
+  <button
+   class="btn green full"
+   style="margin-top:14px">
+
+   💾 ثبت پرداخت
+
+  </button>
+
+ </form>
+
+ `);
+
+}
+
+
+function savePayment(e,id){
+
+ e.preventDefault();
+
+ const u=
+  db.users.find(
+   x=>x.id===id
+  );
+
+ if(!u)return;
+
+ const amount=
+  Number(
+   document.getElementById("payAmount").value
+  );
+
+ if(amount<=0){
+
+  toast("مبلغ معتبر نیست.");
+
+  return;
+
+ }
+
+ u.payments=u.payments||[];
+
+ u.payments.push({
+  id:uid("pay"),
+  amount,
+  date:
+   document.getElementById("payDate").value,
+  note:
+   document.getElementById("payNote").value.trim()
+ });
+
+ saveDB();
+
+ closeModal();
+
+ toast("پرداخت ثبت شد.");
+
+ render();
+
+}
+
+
+/* =====================================================
+   BILL
+===================================================== */
+
+function billModal(id){
+
+ const u=
+  db.users.find(
+   x=>x.id===id
+  );
+
+ if(!u)return;
+
+ const paid=sumPaid(u);
+
+ const remaining=
+  Math.max(
+   0,
+   Number(u.fee||0)-paid
+  );
+
+ const courses=
+  (u.courseIds||[])
+  .map(id=>
+   db.subjects.find(
+    s=>s.id===id
+   )?.name
+  )
+  .filter(Boolean)
+  .join("، ")
+  ||"—";
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   🧾 بیل شاگرد
+  </h3>
+
+  <button class="close"
+          onclick="closeModal()">
+   ×
+  </button>
+
+ </div>
+
+
+ <div class="bill">
+
+  <div class="bill-head">
+
+   <div>
+
+    <b>
+     آموزشگاه علمی
+    </b>
+
+    <br>
+
+    <small>
+     بیل فیس شاگرد
+    </small>
+
+   </div>
+
+   <div>
+
+    ${esc(u.name)}
+
+    <br>
+
+    ${esc(u.phone||"")}
+
+   </div>
+
+  </div>
+
+
+  <div style="padding:12px 0">
+
+   <b>
+    کورس:
+   </b>
+
+   ${esc(courses)}
+
+  </div>
+
+
+  <div class="bill-row">
+
+   <span>
+    فیس کل
+   </span>
+
+   <b>
+    ${money(u.fee)}
+   </b>
+
+  </div>
+
+
+  <div class="bill-row">
+
+   <span>
+    پرداخت‌شده
+   </span>
+
+   <b>
+    ${money(paid)}
+   </b>
+
+  </div>
+
+
+  <div class="bill-row">
+
+   <span>
+    باقی‌مانده
+   </span>
+
+   <b>
+    ${money(remaining)}
+   </b>
+
+  </div>
+
+
+  <h4>
+   سابقه پرداخت
+  </h4>
+
+
+  ${
+   (u.payments||[])
+   .map(p=>`
+
+    <div class="bill-row">
+
+     <span>
+      ${esc(p.date)}
+      —
+      ${esc(p.note||"پرداخت")}
+     </span>
+
+     <b>
+      ${money(p.amount)}
+     </b>
+
+    </div>
+
+   `).join("")
+
+   ||
+
+   "<div class='muted'>پرداختی ثبت نشده است.</div>"
+  }
+
+ </div>
+
+ `);
+
+}
+
+
+/* =====================================================
+   LESSON MODAL
+===================================================== */
+
+function lessonModal(id="",courseId=""){
+
+ let lesson=
+  db.lessons.find(
+   l=>l.id===id
+  )
+  ||
+  {
+   number:nextLessonNumber(courseId),
+   title:"",
+   description:"",
+   teacherId:
+    currentUser.role==="teacher"
+    ?currentUser.id:"",
+   courseId:
+    courseId||
+    selectedSubjectId||
+    "",
+   icon:"📖",
+   file:"",
+   fileName:"",
+   fileType:""
+  };
+
+
+ const courses=
+  db.subjects.map(s=>`
+
+   <option
+    value="${s.id}"
+    ${
+     lesson.courseId===s.id
+     ?"selected"
+     :""
+    }>
+
+    ${esc(s.category)}
+    →
+    ${esc(s.name)}
+
+   </option>
+
+  `).join("");
+
+
+ const teachers=
+  db.teachers.map(t=>`
+
+   <option
+    value="${t.id}"
+    ${
+     lesson.teacherId===t.id
+     ?"selected"
+     :""
+    }>
+
+    ${esc(t.name)}
+
+   </option>
+
+  `).join("");
+
+
+ const teacherField=
+  currentUser.role==="admin"
+
+  ?
+
+  `<div class="field">
+
+   <label>
+    استاد
+   </label>
+
+   <select id="lfTeacher">
+    ${teachers}
+   </select>
+
+  </div>`
+
+  :
+
+  `<input
+   id="lfTeacher"
+   type="hidden"
+   value="${esc(currentUser.id)}">`;
+
+
+ openModal(`
+
+ <div class="modal-head">
+
+  <h3>
+   ${id
+    ?"✏️ ویرایش درس"
+    :"➕ افزودن درس"}
+  </h3>
+
+  <button
+   class="close"
+   onclick="closeModal()">
+
+   ×
+
+  </button>
+
+ </div>
+
+
+ <form
+  onsubmit="saveLesson(event,'${id}')">
+
+  <div class="form-grid">
+
+
+   <div class="field">
+
+    <label>
+     کورس
+    </label>
+
+    <select
+     id="lfCourse"
+     required>
+
+     ${courses}
+
+    </select>
+
+   </div>
+
+
+   ${teacherField}
+
+
+   <div class="field">
+
+    <label>
+     شماره درس
+    </label>
+
+    <input
+     id="lfNumber"
+     type="number"
+     min="1"
+     value="${Number(lesson.number)||1}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     عنوان درس
+    </label>
+
+    <input
+     id="lfTitle"
+     value="${esc(lesson.title)}"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     آیکن
+    </label>
+
+    <input
+     id="lfIcon"
+     value="${esc(lesson.icon||"📖")}">
+
+   </div>
+
+
+   <div class="field full">
+
+    <label>
+     توضیح درس
+    </label>
+
+    <textarea
+     id="lfDesc">${esc(lesson.description||"")}</textarea>
+
+   </div>
+
+
+   <div class="field full">
+
+    <label>
+     فایل آموزشی
+    </label>
+
+    <input
+     id="lfFile"
+     type="file"
+     accept=".pdf,.doc,.docx,.ppt,.pptx,.zip,.txt,image/*,video/*">
+
+   </div>
+
+  </div>
+
+
+  <div
+   id="fileInfo"
+   class="file-box">
+
+   ${
+    lesson.file
+    ?
+    `فایل فعلی:
+     <b>${esc(lesson.fileName)}</b>`
+    :
+    "فایلی انتخاب نشده است."
+   }
+
+  </div>
+
+
+  <button
+   class="btn full"
+   style="margin-top:14px">
+
+   💾 ذخیره درس
+
+  </button>
+
+ </form>
+
+ `);
+
+
+ document
+  .getElementById("lfFile")
+  .addEventListener(
+   "change",
+   handleFile
+  );
+
+
+ currentFileData=
+  lesson.file
+  ?
+  {
+   data:lesson.file,
+   name:lesson.fileName,
+   type:lesson.fileType
+  }
+  :
+  null;
+
+}
+
+
+function handleFile(e){
+
+ const file=
+  e.target.files[0];
+
+ if(!file)return;
+
+
+ if(
+  file.size>
+  10*1024*1024
+ ){
+
+  toast(
+   "برای نسخه آفلاین، حجم فایل حداکثر ۱۰MB باشد."
+  );
+
+  e.target.value="";
+
+  return;
+
+ }
+
+
+ const reader=
+  new FileReader();
+
+
+ reader.onload=()=>{
+
+  currentFileData={
+   data:reader.result,
+   name:file.name,
+   type:file.type
+  };
+
+
+  document.getElementById(
+   "fileInfo"
+  ).innerHTML=`
+
+   📎
+   <b>${esc(file.name)}</b>
+
+   |
+
+   ${(file.size/1024/1024).toFixed(2)}
+   MB
+
+  `;
+
+ };
+
+
+ reader.readAsDataURL(file);
+
+}
+
+
+function saveLesson(e,id){
+
+ e.preventDefault();
+
+ let lesson=
+  db.lessons.find(
+   l=>l.id===id
+  );
+
+
+ if(!lesson){
+
+  lesson={
+   id:uid("les"),
+   date:today(),
+   deleted:false
+  };
+
+  db.lessons.push(lesson);
+
+ }
+
+
+ lesson.courseId=
+  document.getElementById("lfCourse").value;
+
+ lesson.teacherId=
+  document.getElementById("lfTeacher").value;
+
+ lesson.number=
+  Number(
+   document.getElementById("lfNumber").value
+  );
+
+ lesson.title=
+  document.getElementById("lfTitle").value.trim();
+
+ lesson.icon=
+  document.getElementById("lfIcon").value.trim()
+  ||"📖";
+
+ lesson.description=
+  document.getElementById("lfDesc").value.trim();
+
+ lesson.date=today();
+
+ lesson.deleted=false;
+
+
+ if(currentFileData){
+
+  lesson.file=
+   currentFileData.data;
+
+  lesson.fileName=
+   currentFileData.name;
+
+  lesson.fileType=
+   currentFileData.type;
+
+ }
+
+
+ saveDB();
+
+ currentFileData=null;
+
+ closeModal();
+
+ toast("درس ذخیره شد.");
+
+ render();
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function settingsPage(){
+
+ return `
+
+ <div class="section-title">
+
+  <h2>
+   ⚙️ تنظیمات حساب
+  </h2>
+
+ </div>
+
+
+ <div class="panel">
+
+  <form
+   onsubmit="changePassword(event)"
+   class="form-grid">
+
+
+   <div class="field">
+
+    <label>
+     رمز فعلی
+    </label>
+
+    <input
+     id="oldPass"
+     type="password"
+     required>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     رمز جدید
+    </label>
+
+    <div class="password">
+
+     <input
+      id="newPass"
+      type="password"
+      required>
+
+     <button
+      type="button"
+      class="eye"
+      onclick="togglePassword('newPass',this)">
+      👁️
+     </button>
+
+    </div>
+
+   </div>
+
+
+   <div class="field">
+
+    <label>
+     تکرار رمز جدید
+    </label>
+
+    <input
+     id="newPass2"
+     type="password"
+     required>
+
+   </div>
+
+
+  </form>
+
+
+  <button
+   class="btn"
+   onclick="changePassword(document.getElementById('settingsForm'))">
+
+   🔑 تغییر رمز
+
+  </button>
+
+ </div>
+
+ `;
+
+}
+
+
+/* =====================================================
+   DELETE / RECYCLE
+===================================================== */
+
+function deleteTeacher(id){
+
+ if(
+  !confirm(
+   "استاد به سطل زباله منتقل شود؟"
+  )
+ )return;
+
+ const teacher=
+  db.teachers.find(
+   t=>t.id===id
+  );
+
+ if(!teacher)return;
+
+ db.trash.push({
+  type:"استاد",
+  label:teacher.name,
+  deletedAt:now(),
+  data:teacher
+ });
+
+ db.teachers=
+  db.teachers.filter(
+   t=>t.id!==id
+  );
+
+ db.lessons.forEach(l=>{
+
+  if(l.teacherId===id)
+   l.teacherId="";
+
+ });
+
+ saveDB();
+
+ render();
+
+ toast(
+  "استاد به سطل زباله منتقل شد."
+ );
+
+}
+
+
+function deleteStudent(id){
+
+ if(
+  !confirm(
+   "شاگرد به سطل زباله منتقل شود؟"
+  )
+ )return;
+
+ const student=
+  db.users.find(
+   u=>u.id===id
+  );
+
+ if(!student)return;
+
+ db.trash.push({
+  type:"شاگرد",
+  label:student.name,
+  deletedAt:now(),
+  data:student
+ });
+
+ db.users=
+  db.users.filter(
+   u=>u.id!==id
+  );
+
+ saveDB();
+
+ render();
+
+ toast(
+  "شاگرد به سطل زباله منتقل شد."
+ );
+
+}
+
+
+function deleteSubject(id){
+
+ if(
+  !confirm(
+   "کورس و درس‌های آن حذف شوند؟"
+  )
+ )return;
+
+ const subject=
+  db.subjects.find(
+   s=>s.id===id
+  );
+
+ if(!subject)return;
+
+ const lessons=
+  db.lessons.filter(
+   l=>l.courseId===id
+  );
+
+ db.trash.push({
+  type:"کورس",
+  label:subject.name,
+  deletedAt:now(),
+  data:subject,
+  lessons
+ });
+
+ db.subjects=
+  db.subjects.filter(
+   s=>s.id!==id
+  );
+
+ db.lessons=
+  db.lessons.filter(
+   l=>l.courseId!==id
+  );
+
+ saveDB();
+
+ render();
+
+ toast(
+  "کورس به سطل زباله منتقل شد."
+ );
+
+}
+
+
+function deleteLesson(id){
+
+ if(
+  !confirm(
+   "درس به سطل زباله منتقل شود؟"
+  )
+ )return;
+
+ const lesson=
+  db.lessons.find(
+   l=>l.id===id
+  );
+
+ if(!lesson)return;
+
+ db.trash.push({
+  type:"درس",
+  label:lesson.title,
+  deletedAt:now(),
+  data:lesson
+ });
+
+ db.lessons=
+  db.lessons.filter(
+   l=>l.id!==id
+  );
+
+ saveDB();
+
+ render();
+
+ toast(
+  "درس به سطل زباله منتقل شد."
+ );
+
+}
+
+
+function restoreTrash(index){
+
+ const item=
+  db.trash[index];
+
+ if(!item)return;
+
+
+ if(item.type==="استاد")
+  db.teachers.push(item.data);
+
+
+ else if(item.type==="شاگرد")
+  db.users.push(item.data);
+
+
+ else if(item.type==="کورس"){
+
+  db.subjects.push(item.data);
+
+  (item.lessons||[])
+   .forEach(l=>
+    db.lessons.push(l)
+   );
+
+ }
+
+
+ else if(item.type==="درس")
+  db.lessons.push(item.data);
+
+
+ db.trash.splice(index,1);
+
+ saveDB();
+
+ render();
+
+ toast(
+  "مورد با موفقیت بازیابی شد."
+ );
+
+}
+
+
+function permanentTrash(index){
+
+ if(
+  !confirm(
+   "حذف دائمی است و قابل برگشت نیست. ادامه؟"
+  )
+ )return;
+
+ db.trash.splice(index,1);
+
+ saveDB();
+
+ render();
+
+ toast(
+  "مورد برای همیشه حذف شد."
+ );
+
+}
+
+
+function emptyTrash(){
+
+ if(!db.trash.length){
+
+  toast("سطل زباله خالی است.");
+
+  return;
+
+ }
+
+ if(
+  !confirm(
+   "تمام موارد برای همیشه حذف شوند؟"
+  )
+ )return;
+
+ db.trash=[];
+
+ saveDB();
+
+ render();
+
+ toast(
+  "سطل زباله خالی شد."
+ );
+
+}
+
+
+/* =====================================================
+   LESSON ACTIONS
+===================================================== */
+
+function downloadFile(id){
+
+ const lesson=
+  db.lessons.find(
+   l=>l.id===id
+  );
+
+ if(!lesson||!lesson.file){
+
+  toast("فایلی وجود ندارد.");
+
+  return;
+
+ }
+
+ const a=
+  document.createElement("a");
+
+ a.href=lesson.file;
+
+ a.download=
+  lesson.fileName||
+  "lesson-file";
+
+ document.body.appendChild(a);
+
+ a.click();
+
+ a.remove();
+
+}
+
+
+function completeLesson(id){
+
+ currentUser.completedLessons=
+  currentUser.completedLessons||[];
+
+ if(
+  !currentUser.completedLessons.includes(id)
+ ){
+
+  currentUser.completedLessons.push(id);
+
+ }
+
+
+ const user=
+  db.users.find(
+   u=>u.id===currentUser.id
+  );
+
+ if(user){
+
+  user.completedLessons=
+   currentUser.completedLessons;
+
+ }
+
+
+ saveDB();
+
+ toast(
+  "درس به‌عنوان انجام‌شده ثبت شد."
+ );
+
+ render();
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function filterCards(id,q){
+
+ q=q.toLowerCase().trim();
+
+ document
+  .querySelectorAll("#"+id+">*")
+  .forEach(card=>{
+
+   card.style.display=
+    card.innerText
+     .toLowerCase()
+     .includes(q)
+     ?""
+     :"none";
+
+  });
+
+}
+
+
+function filterTable(q,id){
+
+ q=q.toLowerCase().trim();
+
+ document
+  .querySelectorAll("#"+id+" tbody tr")
+  .forEach(row=>{
+
+   row.style.display=
+    row.innerText
+     .toLowerCase()
+     .includes(q)
+     ?""
+     :"none";
+
+  });
+
+}
+
+
+function globalSearch(q){
+
+ q=q.trim().toLowerCase();
+
+ if(!q)return;
+
+ const all=[
+  ...db.subjects,
+  ...db.teachers,
+  ...db.lessons,
+  ...db.users
+ ];
+
+ const found=
+  all.some(x=>
+   JSON.stringify(x)
+    .toLowerCase()
+    .includes(q)
+  );
+
+ toast(
+  found
+  ?"مورد پیدا شد؛ بخش مربوطه را باز کنید."
+  :"موردی پیدا نشد."
+ );
+
+}
+
+
+/* =====================================================
+   NEXT LESSON NUMBER
+===================================================== */
+
+function nextLessonNumber(courseId){
+
+ return 1+
+  db.lessons
+  .filter(
+   l=>l.courseId===courseId
+  )
+  .reduce(
+   (max,l)=>
+    Math.max(
+     max,
+     Number(l.number)||0
+    ),
+   0
+  );
+
+}
+
+
+/* =====================================================
+   CHANGE PASSWORD
+===================================================== */
+
+function changePassword(){
+
+ const oldPass=
+  document.getElementById("oldPass")?.value;
+
+ const newPass=
+  document.getElementById("newPass")?.value;
+
+ const newPass2=
+  document.getElementById("newPass2")?.value;
+
+
+ if(!oldPass||!newPass||!newPass2){
+
+  toast("تمام قسمت‌های رمز را پر کنید.");
+
+  return;
+
+ }
+
+
+ if(oldPass!==currentUser.password){
+
+  toast("رمز فعلی نادرست است.");
+
+  return;
+
+ }
+
+
+ if(!validPassword(newPass)){
+
+  toast(
+   "رمز جدید باید شامل حرف، عدد و علامت باشد."
+  );
+
+  return;
+
+ }
+
+
+ if(newPass!==newPass2){
+
+  toast(
+   "تکرار رمز جدید یکسان نیست."
+  );
+
+  return;
+
+ }
+
+
+ if(currentUser.role==="teacher"){
+
+  const teacher=
+   db.teachers.find(
+    t=>t.id===currentUser.id
+   );
+
+  if(teacher)
+   teacher.password=newPass;
+
+  currentUser.password=newPass;
+
+ }
+
+ else{
+
+  const user=
+   db.users.find(
+    u=>u.id===currentUser.id
+   );
+
+  if(user)
+   user.password=newPass;
+
+  currentUser.password=newPass;
+
+ }
+
+
+ saveDB();
+
+ toast(
+  "رمز با موفقیت تغییر کرد."
+ );
+
+ document.getElementById("oldPass").value="";
+ document.getElementById("newPass").value="";
+ document.getElementById("newPass2").value="";
+
+}
+
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+window.addEventListener(
+ "beforeunload",
+ saveDB
+);
+
+saveDB();
+
+</script>
+
+</body>
+</html>
